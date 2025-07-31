@@ -1,7 +1,8 @@
-
 import pandas as pd
 import numpy as np
 import streamlit as st
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 # Nombre Pestaña
@@ -31,14 +32,6 @@ with steps[0]:
     m2.write('Metricas filtradas')
     m2.metric(label = 'Metrica 2', value = np.mean(id1['Clics']), delta = str(np.mean(id1['Impresiones'])) + 'Promedio de impresiones', delta_color = 'inverse')
     
-
-
-    if st.button('Type: Crafting', type = 'primary'):
-        st.write('No disponible por cambio de parche')
-
-with steps[2]:
-    st.selectbox('**Tipo de aumento**', ['Silver','Gold', 'Prismatic'])
-
 with steps[1]:
     df=pd.read_csv("https://raw.githubusercontent.com/diplomado-bigdata-machinelearning-udea/Curso1/master/s03/dataVentas2009.csv")
     df.Fecha = pd.to_datetime(df.Fecha, format = '%d/%m/%Y')
@@ -50,7 +43,8 @@ with steps[1]:
     ax = sns.histplot(data = df, x = varx)
     st.pyplot(fig)
 
+    if st.button('Type: Crafting', type = 'primary'):
+        st.write('No disponible por cambio de parche')
 
-
-
-        
+with steps[2]:
+    st.selectbox('**Tipo de aumento**', ['Silver','Gold', 'Prismatic'])
